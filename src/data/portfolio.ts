@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Y. Nandha Kumar Reddy",
-  firstName: "Nandha",
+  firstName: "Yerasi Nandha Kumar Reddy",
   role: "AI & Full Stack Developer",
   tagline: "Building Intelligent Systems & Scalable Web Applications",
   intro:
