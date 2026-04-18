@@ -1,56 +1,55 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { skills } from "@/data/portfolio";
 
 export default function Skills() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const els = ref.current?.querySelectorAll(".reveal");
-    els?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6" ref={ref}>
+    <section id="skills" className="py-36 px-6 lg:px-8 relative bg-surface" ref={ref}>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-card-border to-transparent" />
+
       <div className="max-w-6xl mx-auto">
-        <div className="reveal">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
+        >
+          <p className="text-accent text-xs font-medium tracking-[0.25em] uppercase mb-6">
+            Expertise
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight">
             Technical <span className="gradient-text">Skills</span>
           </h2>
-          <div className="w-16 h-1 bg-accent mx-auto rounded-full mb-12" />
-        </div>
+        </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {skills.categories.map((cat, i) => (
-            <div
+            <motion.div
               key={cat.name}
-              className="reveal p-6 rounded-2xl bg-card-bg border border-card-border hover:border-accent/30 transition-all duration-300"
-              style={{ transitionDelay: `${i * 80}ms` }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+              className="p-6 rounded-2xl bg-card-bg border border-card-border transition-all duration-500 hover:border-accent/15 card-glow hover:card-glow-hover hover:-translate-y-0.5"
             >
-              <h3 className="text-accent font-semibold text-sm uppercase tracking-wider mb-4">
+              <h3 className="text-accent/70 font-display font-medium text-xs uppercase tracking-[0.2em] mb-5">
                 {cat.name}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {cat.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 text-sm bg-accent/5 border border-accent/15 text-foreground rounded-lg hover:bg-accent/10 hover:border-accent/30 transition-all duration-200"
+                    className="px-3.5 py-1.5 text-[13px] bg-accent-subtle text-foreground/70 rounded-full border border-card-border hover:border-accent/25 hover:text-accent hover:bg-accent-subtle transition-all duration-300"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

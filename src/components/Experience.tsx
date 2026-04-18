@@ -1,75 +1,85 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { experience } from "@/data/portfolio";
 
 export default function Experience() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const els = ref.current?.querySelectorAll(".reveal");
-    els?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6" ref={ref}>
+    <section id="experience" className="py-36 px-6 lg:px-8 relative bg-surface" ref={ref}>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-card-border to-transparent" />
+
       <div className="max-w-6xl mx-auto">
-        <div className="reveal">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20"
+        >
+          <p className="text-accent text-xs font-medium tracking-[0.25em] uppercase mb-6">
+            Career
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight">
             Work <span className="gradient-text">Experience</span>
           </h2>
-          <div className="w-16 h-1 bg-accent mx-auto rounded-full mb-12" />
-        </div>
+        </motion.div>
 
         {experience.map((exp) => (
-          <div key={exp.company} className="reveal max-w-4xl mx-auto">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 p-6 rounded-2xl bg-card-bg border border-card-border">
+          <div key={exp.company} className="max-w-4xl mx-auto">
+            {/* Company header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 p-7 rounded-2xl bg-card-bg border border-card-border card-glow"
+            >
               <div>
-                <h3 className="text-xl font-bold text-foreground">
+                <h3 className="font-display text-xl font-bold tracking-tight">
                   {exp.role}
                 </h3>
-                <p className="text-accent font-medium">{exp.company}</p>
+                <p className="text-accent text-sm font-medium mt-1">{exp.company}</p>
               </div>
-              <div className="mt-2 sm:mt-0 text-right">
+              <div className="mt-3 sm:mt-0 sm:text-right">
                 <p className="text-muted text-sm">{exp.period}</p>
-                <p className="text-accent/70 text-sm">{exp.duration}</p>
+                <p className="text-muted/50 text-xs mt-0.5">{exp.duration}</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Timeline */}
-            <div className="relative pl-8 border-l-2 border-card-border space-y-8">
+            <div className="relative pl-10 border-l border-card-border space-y-6 ml-3">
               {exp.responsibilities.map((resp, i) => (
-                <div
+                <motion.div
                   key={resp.title}
-                  className="reveal relative"
-                  style={{ transitionDelay: `${i * 100}ms` }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                  className="relative group"
                 >
-                  {/* Dot */}
-                  <div className="absolute -left-[calc(2rem+5px)] top-1 w-2.5 h-2.5 rounded-full bg-accent border-2 border-background" />
+                  {/* Timeline dot */}
+                  <div className="absolute -left-[calc(2.5rem+5px)] top-3 w-2.5 h-2.5 rounded-full bg-accent/40 ring-4 ring-background group-hover:bg-accent group-hover:ring-accent/10 transition-all duration-500" />
 
-                  <div className="p-5 rounded-xl bg-card-bg/50 border border-card-border/50 hover:border-accent/20 transition-all duration-300">
-                    <h4 className="font-semibold text-foreground mb-2">
+                  <div className="p-6 rounded-2xl bg-card-bg border border-card-border transition-all duration-500 hover:border-accent/15 card-glow hover:card-glow-hover hover:-translate-y-0.5">
+                    <h4 className="font-display font-semibold text-[15px] tracking-tight mb-2">
                       {resp.title}
                     </h4>
-                    <p className="text-muted text-sm leading-relaxed mb-3">
+                    <p className="text-muted text-sm leading-[1.8] mb-4">
                       {resp.description}
                     </p>
-                    <p className="text-xs text-accent/60">
-                      <span className="text-accent/80 font-medium">Tech:</span>{" "}
-                      {resp.tech}
-                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {resp.tech.split(", ").map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 text-[11px] font-medium bg-accent-subtle text-accent/80 rounded-full border border-accent/10"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
