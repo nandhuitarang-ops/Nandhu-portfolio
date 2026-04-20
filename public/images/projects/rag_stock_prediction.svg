@@ -1,0 +1,105 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#818cf8"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg1)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#1e293b" stroke-width="1" opacity="0.8">
+    <line x1="0" y1="90" x2="800" y2="90"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="270" x2="800" y2="270"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="133" y1="0" x2="133" y2="450"/>
+    <line x1="266" y1="0" x2="266" y2="450"/>
+    <line x1="399" y1="0" x2="399" y2="450"/>
+    <line x1="532" y1="0" x2="532" y2="450"/>
+    <line x1="665" y1="0" x2="665" y2="450"/>
+  </g>
+
+  <!-- Chart area fill -->
+  <polygon points="60,320 100,280 140,295 180,240 220,255 260,200 300,215 340,170 380,155 420,175 460,140 500,160 540,130 580,145 600,120" fill="url(#chartGrad)"/>
+
+  <!-- Chart line -->
+  <polyline points="60,320 100,280 140,295 180,240 220,255 260,200 300,215 340,170 380,155 420,175 460,140 500,160 540,130 580,145 600,120" fill="none" stroke="#818cf8" stroke-width="2.5" filter="url(#glow)" stroke-linejoin="round"/>
+
+  <!-- Candlesticks -->
+  <g>
+    <!-- Candle 1 green -->
+    <line x1="660" y1="200" x2="660" y2="320" stroke="#34d399" stroke-width="1.5"/>
+    <rect x="652" y="220" width="16" height="60" rx="1" fill="#34d399" opacity="0.9"/>
+    <!-- Candle 2 red -->
+    <line x1="695" y1="195" x2="695" y2="310" stroke="#f87171" stroke-width="1.5"/>
+    <rect x="687" y="215" width="16" height="55" rx="1" fill="#f87171" opacity="0.9"/>
+    <!-- Candle 3 green -->
+    <line x1="730" y1="180" x2="730" y2="300" stroke="#34d399" stroke-width="1.5"/>
+    <rect x="722" y="195" width="16" height="65" rx="1" fill="#34d399" opacity="0.9"/>
+  </g>
+
+  <!-- BUY Signal -->
+  <g filter="url(#glow)">
+    <polygon points="540,103 530,118 550,118" fill="#34d399"/>
+    <rect x="525" y="68" width="55" height="24" rx="4" fill="#065f46" opacity="0.9"/>
+    <text x="552" y="84" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">BUY</text>
+  </g>
+
+  <!-- Neural network nodes (right side) -->
+  <g opacity="0.25">
+    <circle cx="680" cy="80" r="5" fill="#818cf8"/>
+    <circle cx="680" cy="110" r="5" fill="#818cf8"/>
+    <circle cx="680" cy="140" r="5" fill="#818cf8"/>
+    <circle cx="730" cy="95" r="5" fill="#a78bfa"/>
+    <circle cx="730" cy="125" r="5" fill="#a78bfa"/>
+    <circle cx="780" cy="110" r="5" fill="#c4b5fd"/>
+    <line x1="685" y1="80" x2="725" y2="95" stroke="#818cf8" stroke-width="0.8"/>
+    <line x1="685" y1="80" x2="725" y2="125" stroke="#818cf8" stroke-width="0.8"/>
+    <line x1="685" y1="110" x2="725" y2="95" stroke="#818cf8" stroke-width="0.8"/>
+    <line x1="685" y1="110" x2="725" y2="125" stroke="#818cf8" stroke-width="0.8"/>
+    <line x1="685" y1="140" x2="725" y2="125" stroke="#818cf8" stroke-width="0.8"/>
+    <line x1="735" y1="95" x2="775" y2="110" stroke="#a78bfa" stroke-width="0.8"/>
+    <line x1="735" y1="125" x2="775" y2="110" stroke="#a78bfa" stroke-width="0.8"/>
+  </g>
+
+  <!-- RAG badge -->
+  <rect x="50" y="30" width="90" height="28" rx="14" fill="#4338ca" opacity="0.85"/>
+  <text x="95" y="48" text-anchor="middle" fill="#e0e7ff" font-size="12" font-weight="700">RAG + ML</text>
+
+  <!-- Groq badge -->
+  <rect x="155" y="30" width="90" height="28" rx="14" fill="#1e293b" stroke="#6366f1" stroke-width="1"/>
+  <text x="200" y="48" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="600">LLaMA-3.3</text>
+
+  <!-- Title -->
+  <text x="400" y="415" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700" letter-spacing="0.5">RAG-Based Stock Price Prediction</text>
+  <text x="400" y="438" text-anchor="middle" fill="#64748b" font-size="12">Next.js · FastAPI · pgvector · XGBoost · Groq</text>
+
+  <!-- Decorative dots -->
+  <circle cx="380" cy="155" r="5" fill="#facc15" filter="url(#glow2)" opacity="0.9"/>
+  <circle cx="460" cy="140" r="5" fill="#facc15" filter="url(#glow2)" opacity="0.9"/>
+
+  <!-- RSI / indicator label -->
+  <rect x="50" y="370" width="60" height="22" rx="3" fill="#1e293b"/>
+  <text x="80" y="385" text-anchor="middle" fill="#94a3b8" font-size="10">RSI · MACD</text>
+  <rect x="120" y="370" width="60" height="22" rx="3" fill="#1e293b"/>
+  <text x="150" y="385" text-anchor="middle" fill="#94a3b8" font-size="10">EMA · SMA</text>
+</svg>

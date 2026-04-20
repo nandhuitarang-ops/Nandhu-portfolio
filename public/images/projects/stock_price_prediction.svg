@@ -1,0 +1,134 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#0c1c12"/>
+    </linearGradient>
+    <linearGradient id="actualGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="predGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#1e293b" stroke-width="1" opacity="0.7">
+    <line x1="60" y1="80" x2="760" y2="80"/>
+    <line x1="60" y1="140" x2="760" y2="140"/>
+    <line x1="60" y1="200" x2="760" y2="200"/>
+    <line x1="60" y1="260" x2="760" y2="260"/>
+    <line x1="60" y1="320" x2="760" y2="320"/>
+    <line x1="60" y1="60" x2="60" y2="380"/>
+    <line x1="170" y1="60" x2="170" y2="380"/>
+    <line x1="280" y1="60" x2="280" y2="380"/>
+    <line x1="390" y1="60" x2="390" y2="380"/>
+    <line x1="500" y1="60" x2="500" y2="380"/>
+    <line x1="610" y1="60" x2="610" y2="380"/>
+    <line x1="720" y1="60" x2="720" y2="380"/>
+  </g>
+
+  <!-- Y axis labels -->
+  <text x="50" y="84" text-anchor="end" fill="#475569" font-size="9">2800</text>
+  <text x="50" y="144" text-anchor="end" fill="#475569" font-size="9">2400</text>
+  <text x="50" y="204" text-anchor="end" fill="#475569" font-size="9">2000</text>
+  <text x="50" y="264" text-anchor="end" fill="#475569" font-size="9">1600</text>
+  <text x="50" y="324" text-anchor="end" fill="#475569" font-size="9">1200</text>
+
+  <!-- X axis labels -->
+  <text x="60" y="370" text-anchor="middle" fill="#475569" font-size="9">Jan</text>
+  <text x="170" y="370" text-anchor="middle" fill="#475569" font-size="9">Feb</text>
+  <text x="280" y="370" text-anchor="middle" fill="#475569" font-size="9">Mar</text>
+  <text x="390" y="370" text-anchor="middle" fill="#475569" font-size="9">Apr</text>
+  <text x="500" y="370" text-anchor="middle" fill="#475569" font-size="9">May</text>
+  <text x="610" y="370" text-anchor="middle" fill="#475569" font-size="9">Jun</text>
+  <text x="720" y="370" text-anchor="middle" fill="#475569" font-size="9">Jul</text>
+
+  <!-- Actual price fill -->
+  <polygon points="60,290 110,260 160,270 210,245 260,255 310,230 360,240 410,210 460,220 500,320 500,320 460,320 410,320 360,320 310,320 260,320 210,320 160,320 110,320 60,320" fill="url(#actualGrad)"/>
+
+  <!-- Actual price line (solid) -->
+  <polyline points="60,290 110,260 160,270 210,245 260,255 310,230 360,240 410,210 460,220 500,200" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Prediction line (dashed, continues from where actual ends) -->
+  <polyline points="500,200 550,185 600,170 650,155 700,142 750,128" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="8,4" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- Confidence band -->
+  <polygon points="500,200 550,175 600,158 650,140 700,125 750,110 750,148 700,162 650,172 600,184 550,198 500,212" fill="#f59e0b" opacity="0.08"/>
+
+  <!-- Divider line (train/test split) -->
+  <line x1="500" y1="60" x2="500" y2="345" stroke="#475569" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect x="458" y="340" width="84" height="16" rx="8" fill="#1e293b"/>
+  <text x="500" y="351" text-anchor="middle" fill="#94a3b8" font-size="9">Train | Predict</text>
+
+  <!-- Data points on actual -->
+  <g fill="#22c55e" filter="url(#glow)">
+    <circle cx="60" cy="290" r="3.5"/>
+    <circle cx="110" cy="260" r="3.5"/>
+    <circle cx="160" cy="270" r="3.5"/>
+    <circle cx="210" cy="245" r="3.5"/>
+    <circle cx="260" cy="255" r="3.5"/>
+    <circle cx="310" cy="230" r="3.5"/>
+    <circle cx="360" cy="240" r="3.5"/>
+    <circle cx="410" cy="210" r="3.5"/>
+    <circle cx="460" cy="220" r="3.5"/>
+    <circle cx="500" cy="200" r="4" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+  </g>
+
+  <!-- Data points on prediction -->
+  <g fill="#f59e0b" filter="url(#glow)">
+    <circle cx="550" cy="185" r="3.5"/>
+    <circle cx="600" cy="170" r="3.5"/>
+    <circle cx="650" cy="155" r="3.5"/>
+    <circle cx="700" cy="142" r="3.5"/>
+    <circle cx="750" cy="128" r="3.5"/>
+  </g>
+
+  <!-- Model info panel -->
+  <rect x="60" y="65" width="200" height="110" rx="10" fill="#0a0f1e" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="85" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="600">Model Architecture</text>
+  <!-- Features -->
+  <g>
+    <rect x="75" y="92" width="8" height="8" rx="2" fill="#22c55e"/>
+    <text x="90" y="101" fill="#e2e8f0" font-size="9">Regression (Linear)</text>
+    <rect x="75" y="107" width="8" height="8" rx="2" fill="#0891b2"/>
+    <text x="90" y="116" fill="#e2e8f0" font-size="9">Time-Series Analysis</text>
+    <rect x="75" y="122" width="8" height="8" rx="2" fill="#f59e0b"/>
+    <text x="90" y="131" fill="#e2e8f0" font-size="9">Historical OHLCV</text>
+    <rect x="75" y="137" width="8" height="8" rx="2" fill="#e879f9"/>
+    <text x="90" y="146" fill="#e2e8f0" font-size="9">Pandas · Scikit-learn</text>
+    <rect x="75" y="152" width="8" height="8" rx="2" fill="#fb7185"/>
+    <text x="90" y="161" fill="#e2e8f0" font-size="9">90-day lookback</text>
+  </g>
+
+  <!-- Accuracy badge -->
+  <rect x="600" y="65" width="155" height="90" rx="10" fill="#0a0f1e" stroke="#334155" stroke-width="1"/>
+  <text x="677" y="88" text-anchor="middle" fill="#94a3b8" font-size="10" font-weight="600">Accuracy Metrics</text>
+  <text x="677" y="115" text-anchor="middle" fill="#22c55e" font-size="26" font-weight="800" filter="url(#glow2)">↑</text>
+  <text x="677" y="137" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">RMSE Improved</text>
+  <text x="677" y="150" text-anchor="middle" fill="#64748b" font-size="9">via feature engineering</text>
+
+  <!-- Legend -->
+  <g>
+    <line x1="560" y1="65" x2="585" y2="65" stroke="#22c55e" stroke-width="2.5" filter="url(#glow)"/>
+    <text x="590" y="70" fill="#86efac" font-size="9">Actual Price</text>
+    <line x1="560" y1="82" x2="585" y2="82" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,3" filter="url(#glow)"/>
+    <text x="590" y="87" fill="#fcd34d" font-size="9">Predicted Price</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="415" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">Stock Price Prediction System</text>
+  <text x="400" y="438" text-anchor="middle" fill="#64748b" font-size="12">Python · Pandas · Scikit-learn · Regression · Time-Series</text>
+</svg>

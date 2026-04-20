@@ -1,0 +1,167 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1a0a00"/>
+    </linearGradient>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1c1008"/>
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#422006"/>
+      <stop offset="100%" style="stop-color:#292524"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="alertGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Ground -->
+  <rect x="0" y="310" width="800" height="140" fill="url(#groundGrad)" opacity="0.6"/>
+
+  <!-- Stars -->
+  <g fill="#e2e8f0" opacity="0.3">
+    <circle cx="50" cy="30" r="1"/>
+    <circle cx="150" cy="55" r="1"/>
+    <circle cx="250" cy="20" r="1.2"/>
+    <circle cx="450" cy="40" r="1"/>
+    <circle cx="550" cy="25" r="1.2"/>
+    <circle cx="650" cy="50" r="1"/>
+    <circle cx="750" cy="35" r="1"/>
+    <circle cx="720" cy="18" r="0.8"/>
+    <circle cx="380" cy="15" r="0.8"/>
+  </g>
+
+  <!-- HEALTHY TREES (left side, green) -->
+  <!-- Tree 1 -->
+  <polygon points="90,310 130,200 170,310" fill="#166534" opacity="0.9"/>
+  <polygon points="100,270 130,175 160,270" fill="#15803d" opacity="0.9"/>
+  <polygon points="110,240 130,155 150,240" fill="#16a34a"/>
+  <rect x="122" y="305" width="16" height="20" fill="#92400e"/>
+
+  <!-- Tree 2 -->
+  <polygon points="180,310 210,215 240,310" fill="#166534" opacity="0.85"/>
+  <polygon points="188,278 210,192 232,278" fill="#15803d"/>
+  <polygon points="196,250 210,172 224,250" fill="#16a34a"/>
+  <rect x="203" y="305" width="14" height="18" fill="#92400e"/>
+
+  <!-- Tree 3 (slightly dry) -->
+  <polygon points="260,310 290,220 320,310" fill="#a16207" opacity="0.8"/>
+  <polygon points="268,278 290,198 312,278" fill="#ca8a04" opacity="0.8"/>
+  <polygon points="276,248 290,178 304,248" fill="#eab308" opacity="0.7"/>
+  <rect x="283" y="305" width="14" height="18" fill="#78350f"/>
+
+  <!-- Sensor on tree 3 -->
+  <rect x="302" y="255" width="22" height="30" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="313" y="268" text-anchor="middle" fill="#f59e0b" font-size="7" font-weight="700">IoT</text>
+  <text x="313" y="278" text-anchor="middle" fill="#fbbf24" font-size="6">SENSE</text>
+  <!-- Wifi signal from sensor -->
+  <g stroke="#f59e0b" stroke-width="1.2" fill="none" opacity="0.7">
+    <path d="M313,252 Q330,240 345,252"/>
+    <path d="M313,246 Q338,230 361,246"/>
+  </g>
+
+  <!-- DRY/FIRE TREES (right side) -->
+  <!-- Dry Tree 4 -->
+  <polygon points="380,310 410,225 440,310" fill="#78350f" opacity="0.9"/>
+  <polygon points="388,278 410,202 432,278" fill="#92400e" opacity="0.9"/>
+  <polygon points="396,250 410,182 424,250" fill="#b45309" opacity="0.8"/>
+  <rect x="403" y="305" width="14" height="18" fill="#57534e"/>
+
+  <!-- FIRE on tree 5 -->
+  <polygon points="490,310 520,225 550,310" fill="#7c2d12" opacity="0.9"/>
+  <polygon points="498,278 520,202 542,278" fill="#9a3412"/>
+  <rect x="513" y="305" width="14" height="18" fill="#57534e"/>
+
+  <!-- Fire flames -->
+  <circle cx="520" cy="210" r="40" fill="url(#fireGlow)" opacity="0.8"/>
+  <g filter="url(#glow2)">
+    <!-- Flame 1 -->
+    <path d="M508,230 Q510,210 520,198 Q524,215 530,205 Q532,225 520,235 Z" fill="#fbbf24" opacity="0.9"/>
+    <!-- Flame 2 -->
+    <path d="M515,238 Q512,218 522,205 Q528,220 535,210 Q537,230 522,240 Z" fill="#f97316" opacity="0.85"/>
+    <!-- Flame 3 -->
+    <path d="M512,242 Q508,225 518,214 Q524,228 530,218 Q534,236 518,245 Z" fill="#ef4444" opacity="0.8"/>
+  </g>
+
+  <!-- Alert glow around fire tree -->
+  <circle cx="520" cy="250" r="80" fill="url(#alertGlow)"/>
+
+  <!-- Sensor on dry tree -->
+  <rect x="543" y="255" width="22" height="30" rx="4" fill="#0f172a" stroke="#ef4444" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="554" y="268" text-anchor="middle" fill="#ef4444" font-size="7" font-weight="700">IoT</text>
+  <text x="554" y="278" text-anchor="middle" fill="#fca5a5" font-size="6">ALERT!</text>
+  <!-- Wifi signal flashing -->
+  <g stroke="#ef4444" stroke-width="1.5" fill="none" filter="url(#glow)">
+    <path d="M554,252 Q570,240 584,252"/>
+    <path d="M554,246 Q576,230 596,246"/>
+  </g>
+
+  <!-- DATA FLOW AND DASHBOARD PANEL -->
+  <rect x="610" y="55" width="175" height="290" rx="14" fill="#0a0f1e" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Panel header -->
+  <rect x="610" y="55" width="175" height="36" rx="14" fill="#1a0a00"/>
+  <rect x="610" y="73" width="175" height="18" fill="#1a0a00"/>
+  <text x="697" y="79" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="700">🌲 Forest Monitor</text>
+
+  <!-- Readings -->
+  <text x="625" y="108" fill="#64748b" font-size="9">Temperature</text>
+  <rect x="625" y="112" width="140" height="8" rx="4" fill="#1e293b"/>
+  <rect x="625" y="112" width="112" height="8" rx="4" fill="#ef4444"/>
+  <text x="775" y="119" text-anchor="end" fill="#ef4444" font-size="9" font-weight="700">42°C</text>
+
+  <text x="625" y="135" fill="#64748b" font-size="9">Humidity</text>
+  <rect x="625" y="139" width="140" height="8" rx="4" fill="#1e293b"/>
+  <rect x="625" y="139" width="42" height="8" rx="4" fill="#f97316"/>
+  <text x="775" y="146" text-anchor="end" fill="#f97316" font-size="9" font-weight="700">18%</text>
+
+  <text x="625" y="162" fill="#64748b" font-size="9">Soil Moisture</text>
+  <rect x="625" y="166" width="140" height="8" rx="4" fill="#1e293b"/>
+  <rect x="625" y="166" width="28" height="8" rx="4" fill="#dc2626"/>
+  <text x="775" y="173" text-anchor="end" fill="#dc2626" font-size="9" font-weight="700">8%</text>
+
+  <text x="625" y="189" fill="#64748b" font-size="9">Wind Speed</text>
+  <rect x="625" y="193" width="140" height="8" rx="4" fill="#1e293b"/>
+  <rect x="625" y="193" width="84" height="8" rx="4" fill="#f59e0b"/>
+  <text x="775" y="200" text-anchor="end" fill="#f59e0b" font-size="9" font-weight="700">35 km/h</text>
+
+  <!-- Dryness score -->
+  <rect x="625" y="215" width="140" height="42" rx="8" fill="#1a0a00" stroke="#dc2626" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="695" y="232" text-anchor="middle" fill="#94a3b8" font-size="9">Dryness Index</text>
+  <text x="695" y="250" text-anchor="middle" fill="#ef4444" font-size="18" font-weight="800" filter="url(#glow)">HIGH RISK</text>
+
+  <!-- Alert triggers -->
+  <rect x="625" y="270" width="140" height="22" rx="6" fill="#450a0a" stroke="#ef4444" stroke-width="1" filter="url(#glow)"/>
+  <text x="695" y="284" text-anchor="middle" fill="#f87171" font-size="9" font-weight="700">🔴 FIRE ALERT TRIGGERED</text>
+
+  <rect x="625" y="298" width="140" height="22" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1"/>
+  <text x="695" y="312" text-anchor="middle" fill="#fb923c" font-size="9">⚠ Patrol Dispatched</text>
+
+  <rect x="625" y="325" width="140" height="16" rx="6" fill="#1e293b"/>
+  <text x="695" y="336" text-anchor="middle" fill="#64748b" font-size="8">Data: Python · IoT APIs</text>
+
+  <!-- Connection lines from sensors to dashboard -->
+  <line x1="565" y1="265" x2="608" y2="200" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5" filter="url(#glow)"/>
+  <line x1="325" y1="265" x2="608" y2="200" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5,3" opacity="0.3"/>
+
+  <!-- Title -->
+  <text x="400" y="415" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700">Forest Dryness Detection System</text>
+  <text x="400" y="438" text-anchor="middle" fill="#64748b" font-size="12">Python · IoT Sensors · Environmental Data · Real-time Alerts</text>
+</svg>

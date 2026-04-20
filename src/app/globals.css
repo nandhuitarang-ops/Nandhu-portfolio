@@ -83,6 +83,14 @@ body {
               0 0 80px rgba(184, 134, 11, 0.04);
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .noise-bg {
   position: relative;
 }
